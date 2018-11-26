@@ -15,7 +15,7 @@ q_table = np.zeros((state_space_size, action_space_size))
 
 print(q_table)
 
-num_episodes = 33000
+num_episodes = 10000
 max_steps_per_episode = 100
 
 learning_rate = 0.1
@@ -49,8 +49,6 @@ for episode in range(num_episodes):
 
         # Take the action
         new_state, reward, done, info = env.step(action)
-        print("new_state:", new_state)
-        print("info:", info)
         # Update Q-table for Q(s,a)
         q_table[state, action] = q_table[state, action] * (1 - learning_rate) + learning_rate * (
             reward + discount_rate * np.max(q_table[new_state, :]))
